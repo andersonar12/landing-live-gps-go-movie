@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'affiliation',
+    loadChildren: () => import('./pages/affiliation/affiliation.module').then( m => m.AffiliationPageModule)
+  },
 ];
 
 @NgModule({

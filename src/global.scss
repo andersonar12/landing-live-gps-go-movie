@@ -24,3 +24,55 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+h1,h2,h3,h4,h5{
+    font-family: 'SF Pro Display Bold'!important;
+    font-weight: normal!important;
+  }
+  
+  strong{
+    font-family: 'SF Pro Display Bold'!important;
+    font-weight: normal!important; 
+  }
+  
+  p{
+    font-family: 'SF Pro Display Regular'!important;
+    font-weight: normal!important;
+  }
+  
+  a{
+    font-family: 'SF Pro Display Regular'!important;
+    font-weight: normal!important;
+  }
+  /* 
+  span{
+    font-family: 'SF Pro Display Regular'!important;
+    font-weight: normal!important;
+  } */
+  
+  ion-text{
+    font-family: 'SF Pro Display Regular'!important;
+    font-weight: normal!important;
+  }
+  
+
+.bg-orange{
+    background-color: #FD501E!important;
+}
+
+.bg-dark-orange{
+  background-color: #EA4006;
+}
+
+.text-gray{
+  color: #707070!important;
+}
+
+.text-white{
+  color: white!important;
+}
+
+.btn{
+  border-radius: 1.25rem!important;
+  box-shadow: 2px 2px 10px #00000080;
+}
