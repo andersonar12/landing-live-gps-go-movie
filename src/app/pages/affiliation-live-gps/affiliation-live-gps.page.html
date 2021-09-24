@@ -1,0 +1,64 @@
+<ion-content [fullscreen]="true">
+  <app-top-toolbar></app-top-toolbar>
+
+  <div class="affiliation-live-gps">
+    <ion-row class="ion-padding d-flex justify-content-center  ">
+      <ion-col [size]="12" [sizeMd]="12" [sizeLg]="10" [sizeXl]="5.5"  class=" pt-4 pb-2 text-center" >
+        <h1>Solicitar Beneficio</h1>
+
+        <button mat-raised-button (click)="isEditable = !isEditable">
+          {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
+        </button>
+        
+        <mat-stepper linear #stepper>
+          <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Fill out your name</ng-template>
+              <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+            <form [formGroup]="secondFormGroup">
+              <ng-template matStepLabel>Fill out your address</ng-template>
+              <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                       required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+          </mat-step>
+        </mat-stepper>
+      </ion-col>
+
+
+      <ion-col [size]="12" [sizeMd]="12" [sizeLg]="10" [sizeXl]="5.5"  class=" pt-4 pb-2 text-center " >
+
+        <img src="assets/images/live-gps.png"  class="mt-5" alt="" srcset="">
+        <img src="assets/images/kit-live-gps.png" alt="" srcset="">
+      </ion-col>
+    </ion-row>
+
+
+
+  </div>
+
+  <app-footer></app-footer>
+</ion-content>

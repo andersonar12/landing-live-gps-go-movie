@@ -4,14 +4,16 @@ import { IonicModule } from '@ionic/angular';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-
 import {MatMenuModule} from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
 import { TopToolbarComponent } from './top-toolbar/top-toolbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { ModalComponent } from './modal/modal.component';
 /*-------------------Components----------------- */
 const components =[
   TopToolbarComponent,
-  FooterComponent
+  FooterComponent,
+  ModalComponent
 ]
 
 @NgModule({
@@ -22,7 +24,8 @@ const components =[
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
   ],
   exports: [components, MatButtonModule, MatIconModule, MatListModule],
   entryComponents:[]
