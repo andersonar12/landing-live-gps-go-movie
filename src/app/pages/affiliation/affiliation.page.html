@@ -1,9 +1,159 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>affiliation</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
+  <app-top-toolbar></app-top-toolbar>
 
-<ion-content>
+  <div class="affiliation-go-movie">
+    <ion-row class="ion-padding d-flex justify-content-around ">
+      <ion-col [size]="12" [sizeMd]="12" [sizeLg]="10" [sizeXl]="3"  class="mt-5 mb-5 pt-4 pb-2 text-start d-flex align-items-center" *ngIf="applicationDone" >
 
+        <div class="w-100">
+
+          <div *ngIf="indexStep == 0">
+            <h1 class="text-dark-gray">Solicitar Beneficio</h1>
+            <p class="text-dark-gray mb-0">Envíanos tus datos para validar que eres funcionario y puedas acceder a este beneficio.</p>
+          </div>
+  
+          <div *ngIf="indexStep == 1">
+            <h1 class="text-dark-gray">Escoger plan</h1>
+            <p class="text-dark-gray mb-0">Escoge el plan que más te conviene.</p>
+          </div>
+          
+          <!-- <button mat-raised-button (click)="isEditable = !isEditable">
+            {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
+          </button> -->
+          
+          <mat-stepper linear #stepper (selectionChange)="changeStteper($event)">
+            <mat-step [stepControl]="firstFormGroup" [editable]="isEditable"  ><!-- (change)="interactedStteper($event)" -->
+              <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Primer paso</ng-template>
+
+                <div class="mb-2">
+                  <label for="input-name" class="form-label text-start w-100">Nombre</label>
+                  <input type="text" formControlName="name" formControlName="name" class="form-control" id="input-name">
+                  <div class="form-text" *ngIf="firstFormGroup.controls['name'].hasError('required') &&firstFormGroup.touched ">**Nombre es requerido</div>
+                </div>
+
+                <div class="mb-2">
+                  <label for="input-last-name" class="form-label text-start w-100">Apellido</label>
+                  <input type="text" formControlName="lastname" class="form-control" id="input-last-name">
+                  <div class="form-text" *ngIf="firstFormGroup.controls['lastname'].hasError('required') &&firstFormGroup.touched ">**Apellido es requerido</div>
+                  
+                </div>
+                
+                <div class="mb-2">
+                  <label for="input-RUT" class="form-label text-start w-100">RUT</label>
+                  <input type="text" formControlName="rut" class="form-control" id="input-RUT">
+                  <div class="form-text" *ngIf="firstFormGroup.controls['rut'].hasError('required') &&firstFormGroup.touched ">**RUT es requerido</div>
+                  <div class="form-text" *ngIf="firstFormGroup.controls['rut'].value.length <= 7">**Minimo 8 caracteres</div>
+                </div>
+                
+                <div class="mb-2">
+                  <label for="input-email" class="form-label text-start w-100">Correo Electrónico</label>
+                  <input type="email" formControlName="email" class="form-control" id="input-email" >
+                  <div class="form-text" *ngIf="firstFormGroup.controls['email'].hasError('required') &&firstFormGroup.touched ">**Correo es requerido.</div>
+                  <div class="form-text" *ngIf="firstFormGroup.controls['email'].hasError('email')">**Ingresa un Correo Valido</div>
+                </div>
+
+                <div class="mb-2">
+                  <label for="input-phone" class="form-label text-start w-100">Teléfono</label>
+                  <input type="text" formControlName="phone" class="form-control" id="input-phone">
+                  <div class="form-text" *ngIf="firstFormGroup.controls['phone'].hasError('required') &&firstFormGroup.touched ">**Telefono es requerido</div>
+                </div>
+                
+                <div>
+                  <button type="button" (click)="goForward(stepper)"[disabled]="firstFormGroup.invalid" class="btn btn-success py-2 w-100" style="background-color: #FF5021; border-color: #EA401C; border-radius: 10px !important;"><strong>CONTINUAR</strong> </button>
+              
+                </div>
+
+                <!-- <mat-form-field appearance="fill">
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+                </mat-form-field> -->
+
+               
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+              <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Segundo Paso</ng-template>
+                <mat-radio-group color="primary"
+                  formControlName="plan"
+                  aria-labelledby="example-radio-group-label"
+                  class="example-radio-group">
+                  <mat-radio-button class="example-radio-button p-3" 
+                  style="background: #FFFFFF 0% 0% no-repeat padding-box;
+                  box-shadow: 2px 2px 6px #0000001A;
+                  border: 1px solid #EDEDED;
+                  border-radius: 5px;
+                  opacity: 1;" 
+                  *ngFor="let option of options" [value]="option">
+
+                    <span class="wrap-mat-radio-label"> {{option}}</span>
+                    
+                  </mat-radio-button>
+                </mat-radio-group>
+
+                <br><br><br>
+                <br><br><br>
+
+               
+                        <div class="d-flex justify-content-between">
+                          <button type="button"class="btn btn-success py-2 px-4" (click)="goBack(stepper)"
+                            style="background: transparent linear-gradient(90deg, #FFFFFF 0%, #D8D8D8 100%) 0% 0% no-repeat padding-box; border-color: #EA401C; border-radius: 10px !important;"><strong
+                              style="color:#EA401C!important;">VOLVER</strong> </button>
+                          <button type="button" (click)="sendApplication()"  [disabled]="secondFormGroup.invalid"
+                         class="btn btn-success py-2 px-4"
+                            style="background-color: #FF5021; border-color: #EA401C; border-radius: 10px !important;"><strong>ENVIAR SOLICITUD</strong>
+                          </button>
+                        
+                          <!-- <button mat-button matStepperPrevious>Back</button>
+                                          <button mat-button matStepperNext>Next</button> -->
+                        </div>
+              </form>
+            </mat-step>
+            <!-- <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              <p>You are now done.</p>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+              </div>
+            </mat-step> -->
+          </mat-stepper>
+
+        </div>
+
+      </ion-col>
+
+      <ion-col [size]="12" [sizeMd]="12" [sizeLg]="10" [sizeXl]="3.5"  class="mt-5 mb-5 pt-5 pb-5 text-start d-flex align-items-center" #backHome style="display: none!important;">
+
+        <div >
+
+          <p class=" mb-5">¡Hemos recibido tu solicitud! Si tus datos son correctos, dentro de los siguientes días recibirás recibirás en tu correo un código de activación para tu cuenta Go! Movie.</p>
+          
+  
+            <div class="d-flex justify-content-center mb-5">
+              <button type="button"  class="btn btn-success py-3 px-5" (click)="goHome()"
+              style="background-color: #FF5021; border-color: #EA401C; border-radius: 10px !important;"><strong>VOLVER AL HOME</strong></button>
+            </div>
+
+        </div>
+
+      </ion-col>
+
+
+      <ion-col [size]="12" [sizeMd]="12" [sizeLg]="10" [sizeXl]="5.5" class=" d-flex align-items-center ">
+
+        <div class="text-center" style="margin: 8vw 0px;">
+          <img src="assets/images/go-movie.png"  class="" alt="" srcset="">
+          <img src="assets/images/ticket-go-movie.png" alt="" srcset="">
+
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+
+  </div>
+
+  <app-footer></app-footer>
 </ion-content>

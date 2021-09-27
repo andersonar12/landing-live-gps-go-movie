@@ -13,6 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 @NgModule({
   imports: [
     CommonModule,
@@ -24,7 +26,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatStepperModule,
     ComponentsModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   declarations: [AffiliationLiveGpsPage]
 })

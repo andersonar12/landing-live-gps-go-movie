@@ -1,7 +1,47 @@
 .mat-stepper-horizontal {
-    margin-top: 8px;
-  }
-  
-  .mat-form-field {
-    margin-top: 16px;
-  }
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+p {
+  font-size: 18px;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  padding: 0 !important;
+}
+
+::ng-deep .mat-checkbox-frame {
+  background-color: white !important;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+
+::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: #FD501E!important;
+}
+
+::ng-deep .mat-step-header.mat-warn .mat-step-icon-selected, .mat-step-header.mat-warn .mat-step-icon-state-done {
+  background-color: #FD501E!important;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: #FD501E!important;
+}
+

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-affiliation-live-gps',
@@ -8,19 +10,77 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AffiliationLiveGpsPage implements OnInit {
 
+  @ViewChild('stepper') public myStepper: MatStepper;
+
+  @ViewChild('backHome', {read: ElementRef}) backHome: ElementRef
+
+  public applicationDone = true
+
+  /* Un ejemplo de como usar el Subject para escuchar cuando una variable cambia de valor */
+  private indexStteper: Subject<any> = new Subject<any>();   
+  public indexStteperObs = this.indexStteper.asObservable();
+
+  indexStep:number = 0
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  isEditable = false;
+  isEditable = true;
+
+  options: string[] = ['1 vehículo conectado por $10.490.', '2 vehículos conectados por $19.490.', '3 vehículos conectados por $28.790',];
 
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+
+    /* Aqui escuchamos lo que emite el observable */
+    this.indexStteperObs.subscribe((res) => {
+      console.log('Desde Stepper Observable',res)
+      this.indexStep = res 
+    }) 
+    /* Aqui escuchamos lo que emite el observable */
+
+
+    this.firstFormGroup = new FormGroup({
+      name:new FormControl( '', Validators.required),
+      lastname:new FormControl( '', Validators.required),
+      rut:new FormControl( '', [Validators.required,Validators.minLength(8)]),
+      email:new FormControl( '', [Validators.required,Validators.email]),
+      phone:new FormControl( '', Validators.required),
+      service_extra: new FormControl( false),
+      /* password: new FormControl('', [Validators.required,Validators.minLength(8)]), */
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      plan: ['', Validators.required]
     });
+
+   /*  setInterval(() => {          
+      console.log(this.myStepper);
+     }, 2000); */
+  }
+
+  goBack(stepper: MatStepper) {
+    stepper.previous();
+  }
+
+  async goForward(stepper: MatStepper) {
+    console.log(this.firstFormGroup.value);
+    stepper.next();
+  }
+
+  sendApplication(){
+    console.log(this.secondFormGroup.value);
+    this.applicationDone = false
+    this.backHome.nativeElement.style.display = 'block'
+
+  }
+
+  goHome(){
+    window.location.href = window.location.origin + '/home'
+  }
+  
+
+  changeStteper(event){
+    this.indexStteper.next(event.selectedIndex) /* */
   }
 
 }
