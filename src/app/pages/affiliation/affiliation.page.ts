@@ -69,7 +69,6 @@ export class AffiliationPage implements OnInit {
     console.log(this.secondFormGroup.value);
     this.applicationDone = false
     this.backHome.nativeElement.style.display = 'block'
-
   }
 
   goHome(){
