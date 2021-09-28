@@ -2,6 +2,9 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Subject } from 'rxjs';
+import { Plan } from 'src/app/interfaces/interfaces';
+import { AffiliationService } from 'src/app/services/affiliation.service';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-affiliation',
   templateUrl: './affiliation.page.html',
@@ -18,7 +21,7 @@ export class AffiliationPage implements OnInit {
   /* Un ejemplo de como usar el Subject para escuchar cuando una variable cambia de valor */
   private indexStteper: Subject<any> = new Subject<any>();   
   public indexStteperObs = this.indexStteper.asObservable();
-
+  public plans:Plan[] = []
   indexStep:number = 0
 
   firstFormGroup: FormGroup;
@@ -27,9 +30,16 @@ export class AffiliationPage implements OnInit {
 
   options: string[] = ['Total de 1 usuario conectado por tan solo $1.490.', 'Total de 2 usuarios conectados  simultáneamente por $2.490.', 'Total de 3 usuarios conectados simultáneamente por $3.790.',];
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder, public affiliationService:AffiliationService) {}
 
   ngOnInit() {
+
+    this.affiliationService.getPlans().toPromise()
+      .then(({plans})=>{
+        console.log(plans)
+
+        this.plans = plans
+      }) //Paralizada la integracion con planes hasta nuevo aviso
 
     /* Aqui escuchamos lo que emite el observable */
     this.indexStteperObs.subscribe((res) => {
@@ -40,11 +50,11 @@ export class AffiliationPage implements OnInit {
 
 
     this.firstFormGroup = new FormGroup({
-      name:new FormControl( '', Validators.required),
-      lastname:new FormControl( '', Validators.required),
-      rut:new FormControl( '', [Validators.required,Validators.minLength(8)]),
-      email:new FormControl( '', [Validators.required,Validators.email]),
-      phone:new FormControl( '', Validators.required),
+      first_name:new FormControl( '', Validators.required),
+      last_name:new FormControl( '', Validators.required),
+      rut:new FormControl('', [Validators.required,Validators.minLength(8)]),
+      email:new FormControl('', [Validators.required,Validators.email]),
+      phone_number:new FormControl('', Validators.required),
       /* password: new FormControl('', [Validators.required,Validators.minLength(8)]), */
     });
     this.secondFormGroup = this._formBuilder.group({
@@ -65,8 +75,17 @@ export class AffiliationPage implements OnInit {
     stepper.next();
   }
 
-  sendApplication(){
+  async sendApplication(){
+    this.presentLoader()
     console.log(this.secondFormGroup.value);
+
+    await this.affiliationService.sendAplication(this.firstFormGroup.value).toPromise().then((resp)=>{
+      
+      console.log(resp);
+    
+    }).catch((error)=>{ console.log(error);})
+
+    Swal.close()
     this.applicationDone = false
     this.backHome.nativeElement.style.display = 'block'
   }
@@ -75,9 +94,19 @@ export class AffiliationPage implements OnInit {
     window.location.href = window.location.origin + '/home'
   }
 
-
   changeStteper(event){
     this.indexStteper.next(event.selectedIndex) /* */
+  }
+
+  presentLoader(){
+    Swal.fire({
+      title: 'Cargando',
+      allowOutsideClick: false,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+      },
+    })
   }
 
 }

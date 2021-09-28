@@ -28,14 +28,14 @@
 
                 <div class="mb-2">
                   <label for="input-name" class="form-label text-start w-100">Nombre</label>
-                  <input type="text" formControlName="name" formControlName="name" class="form-control" id="input-name">
-                  <div class="form-text" *ngIf="firstFormGroup.controls['name'].hasError('required') &&firstFormGroup.touched ">**Nombre es requerido</div>
+                  <input type="text"  formControlName="first_name" class="form-control" id="input-name">
+                  <div class="form-text" *ngIf="firstFormGroup.controls['first_name'].hasError('required') &&firstFormGroup.touched ">**Nombre es requerido</div>
                 </div>
 
                 <div class="mb-2">
                   <label for="input-last-name" class="form-label text-start w-100">Apellido</label>
-                  <input type="text" formControlName="lastname" class="form-control" id="input-last-name">
-                  <div class="form-text" *ngIf="firstFormGroup.controls['lastname'].hasError('required') &&firstFormGroup.touched ">**Apellido es requerido</div>
+                  <input type="text" formControlName="last_name" class="form-control" id="input-last-name">
+                  <div class="form-text" *ngIf="firstFormGroup.controls['last_name'].hasError('required') &&firstFormGroup.touched ">**Apellido es requerido</div>
                   
                 </div>
                 
@@ -55,8 +55,8 @@
 
                 <div class="mb-2">
                   <label for="input-phone" class="form-label text-start w-100">Teléfono</label>
-                  <input type="text" formControlName="phone" class="form-control" id="input-phone">
-                  <div class="form-text" *ngIf="firstFormGroup.controls['phone'].hasError('required') &&firstFormGroup.touched ">**Telefono es requerido</div>
+                  <input type="text" formControlName="phone_number" class="form-control" id="input-phone">
+                  <div class="form-text" *ngIf="firstFormGroup.controls['phone_number'].hasError('required') &&firstFormGroup.touched ">**Telefono es requerido</div>
                 </div>
                 
                 <div>

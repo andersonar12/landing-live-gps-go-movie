@@ -2,7 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Subject } from 'rxjs';
-
+import { AffiliationService } from 'src/app/services/affiliation.service';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-affiliation-live-gps',
   templateUrl: './affiliation-live-gps.page.html',
@@ -28,7 +29,7 @@ export class AffiliationLiveGpsPage implements OnInit {
 
   options: string[] = ['1 vehículo conectado por $10.490.', '2 vehículos conectados por $19.490.', '3 vehículos conectados por $28.790',];
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder, public affiliationService:AffiliationService) {}
 
   ngOnInit() {
 
@@ -41,11 +42,11 @@ export class AffiliationLiveGpsPage implements OnInit {
 
 
     this.firstFormGroup = new FormGroup({
-      name:new FormControl( '', Validators.required),
-      lastname:new FormControl( '', Validators.required),
-      rut:new FormControl( '', [Validators.required,Validators.minLength(8)]),
-      email:new FormControl( '', [Validators.required,Validators.email]),
-      phone:new FormControl( '', Validators.required),
+      first_name:new FormControl( '', Validators.required),
+      last_name:new FormControl( '', Validators.required),
+      rut:new FormControl('', [Validators.required,Validators.minLength(8)]),
+      email:new FormControl('', [Validators.required,Validators.email]),
+      phone_number:new FormControl('', Validators.required),
       service_extra: new FormControl( false),
       /* password: new FormControl('', [Validators.required,Validators.minLength(8)]), */
     });
@@ -67,20 +68,39 @@ export class AffiliationLiveGpsPage implements OnInit {
     stepper.next();
   }
 
-  sendApplication(){
+  async sendApplication(){
+    this.presentLoader()
     console.log(this.secondFormGroup.value);
+
+    await this.affiliationService.sendAplication(this.firstFormGroup.value).toPromise().then((resp)=>{
+      
+      console.log(resp);
+    
+    }).catch((error)=>{ console.log(error);})
+
+    Swal.close()
     this.applicationDone = false
     this.backHome.nativeElement.style.display = 'block'
-
   }
+
 
   goHome(){
     window.location.href = window.location.origin + '/home'
   }
   
-
   changeStteper(event){
     this.indexStteper.next(event.selectedIndex) /* */
+  }
+
+  presentLoader(){
+    Swal.fire({
+      title: 'Cargando',
+      allowOutsideClick: false,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+      },
+    })
   }
 
 }
