@@ -77,6 +77,11 @@ export class AffiliationLiveGpsPage implements OnInit {
       console.log(resp);
     
     }).catch((error)=>{ console.log(error);})
+    .finally(()=>{
+      this.affiliationService.sendMail(this.secondFormGroup.value).toPromise().then((resp)=>{
+        console.log(resp);
+      })
+    })
 
     Swal.close()
     this.applicationDone = false

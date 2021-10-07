@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'affiliation-live-gps',
     loadChildren: () => import('./pages/affiliation-live-gps/affiliation-live-gps.module').then( m => m.AffiliationLiveGpsPageModule)
   },
+  {
+    path: 'plantillas',
+    loadChildren: () => import('./pages/plantillas/plantillas.module').then( m => m.PlantillasPageModule)
+  },
 ];
 
 @NgModule({

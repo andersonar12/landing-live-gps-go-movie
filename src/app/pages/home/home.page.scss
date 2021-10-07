@@ -1,3 +1,6 @@
+
+  
+
 .home{
     background-image:url('/assets/images/home.png'); /* linear-gradient(rgb(0 0 0 / 82%), rgb(0 0 0 / 82%)) */
     background-position: center top;
@@ -29,4 +32,25 @@ span{
 
 :hover .poster-modal {
     cursor: pointer;
+}
+
+
+@media (prefers-color-scheme: light) {
+    p{
+        color:rgb(0, 0, 0)!important;
+    }
+
+    h1{
+        color: rgb(0, 0, 0);
+    }  
+}
+
+@media (prefers-color-scheme: dark) {
+    p{
+        color:rgb(0, 0, 0)!important;
+    }
+
+    h1{
+        color: rgb(0, 0, 0);
+    }  
 }
