@@ -41,7 +41,6 @@ export class AffiliationService {
   sendMail(data){
     const endpoint = `http://message-backend.gestsol.io:8000/send-email`;
 
-    debugger
     const body = {
       to: `${data.email}`,
       subject: "Solicitud de Beneficio Live-Gps",
