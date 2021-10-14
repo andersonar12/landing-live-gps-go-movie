@@ -51,7 +51,7 @@ export class AffiliationService {
           <img src='https://landing-pullman-bus.netlify.app/assets/images/live-gps.png' style='width: 180px;' alt='' srcset=''>
           <br>
           
-          <img src='https://landing-pullman-bus.netlify.app/assets/images/pullman-2.svg' style='width: 122px;' alt=''>
+          <img src='https://landing-pullman-bus.netlify.app/assets/images/pullman-2.png' style='width: 122px;' alt=''>
     
         </div>
         <div style='text-align: center; padding: 30px; width: 480px; box-shadow: 0px 3px 3px #00000029!important; color: black;'>
