@@ -46,6 +46,7 @@ export class AffiliationLiveGpsPage implements OnInit {
       last_name:new FormControl( '', Validators.required),
       rut:new FormControl('', [Validators.required,Validators.minLength(8)]),
       email:new FormControl('', [Validators.required,Validators.email]),
+      prefix:new FormControl( '', Validators.required),
       phone_number:new FormControl('', Validators.required),
       service_extra: new FormControl( false),
       /* password: new FormControl('', [Validators.required,Validators.minLength(8)]), */
@@ -78,7 +79,11 @@ export class AffiliationLiveGpsPage implements OnInit {
     
     }).catch((error)=>{ console.log(error);})
     .finally(()=>{
-      this.affiliationService.sendMail(this.secondFormGroup.value).toPromise().then((resp)=>{
+      this.affiliationService.sendMail(this.firstFormGroup.value).toPromise().then((resp)=>{
+        console.log(resp);
+      })
+
+      this.affiliationService.sendWhatsapp(this.firstFormGroup.value).toPromise().then((resp)=>{
         console.log(resp);
       })
     })

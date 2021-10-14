@@ -41,11 +41,11 @@
                 
                 <div class="mb-2">
                   <label for="input-RUT" class="form-label text-start w-100">RUT</label>
-                  <input type="text" formControlName="rut" class="form-control" id="input-RUT">
+                  <input type="text" formControlName="rut" class=" form-control " id="input-RUT">
                   <div class="form-text" *ngIf="firstFormGroup.controls['rut'].hasError('required') &&firstFormGroup.touched ">**RUT es requerido</div>
                   <div class="form-text" *ngIf="firstFormGroup.controls['rut'].value.length <= 7">**Minimo 8 caracteres</div>
                 </div>
-                
+
                 <div class="mb-2">
                   <label for="input-email" class="form-label text-start w-100">Correo Electrónico</label>
                   <input type="email" formControlName="email" class="form-control" id="input-email" >
@@ -53,11 +53,17 @@
                   <div class="form-text" *ngIf="firstFormGroup.controls['email'].hasError('email')">**Ingresa un Correo Valido</div>
                 </div>
 
-                <div class="mb-2">
-                  <label for="input-phone" class="form-label text-start w-100">Teléfono</label>
-                  <input type="text" formControlName="phone_number" class="form-control" id="input-phone">
-                  <div class="form-text" *ngIf="firstFormGroup.controls['phone_number'].hasError('required') &&firstFormGroup.touched ">**Telefono es requerido</div>
+                <label for="input-phone" class="form-label text-start w-100">Teléfono</label>
+                <div class="mb-2 row ">
+                  <div class="col-3">
+                    <input type="text" class="form-control" formControlName="prefix" placeholder="+56">
+                  </div>
+                  <div class="col-1 px-0 d-flex align-items-center justify-content-center"><span><strong>- </strong> </span></div>
+                  <div class="col-8">
+                    <input type="text" formControlName="phone_number" class="form-control" id="input-phone">
+                  </div>
                 </div>
+                <div class="form-text" *ngIf="firstFormGroup.controls['phone_number'].hasError('required') &&firstFormGroup.touched ">**Telefono es requerido</div>
 
                 <div class="mb-2 p-2" style="border-radius: 10px; background-color:#3A5BA4 ;">
                   <ion-row class="d-flex align-items-center">

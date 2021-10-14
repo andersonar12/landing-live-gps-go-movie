@@ -54,6 +54,7 @@ export class AffiliationPage implements OnInit {
       last_name:new FormControl( '', Validators.required),
       rut:new FormControl('', [Validators.required,Validators.minLength(8)]),
       email:new FormControl('', [Validators.required,Validators.email]),
+      prefix:new FormControl( '', Validators.required),
       phone_number:new FormControl('', Validators.required),
       /* password: new FormControl('', [Validators.required,Validators.minLength(8)]), */
     });
@@ -84,6 +85,15 @@ export class AffiliationPage implements OnInit {
       console.log(resp);
     
     }).catch((error)=>{ console.log(error);})
+    .finally(()=>{
+      this.affiliationService.sendMail(this.firstFormGroup.value).toPromise().then((resp)=>{
+        console.log(resp);
+      })
+
+      this.affiliationService.sendWhatsapp(this.firstFormGroup.value).toPromise().then((resp)=>{
+        console.log(resp);
+      })
+    })
 
     Swal.close()
     this.applicationDone = false
