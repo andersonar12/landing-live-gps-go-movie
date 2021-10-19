@@ -39,8 +39,8 @@ export class AffiliationService {
   }
 
   sendMail(data){
-    const endpoint = `http://message-backend.gestsol.io:8000/send-email`;
-
+    const endpoint = `https://message-backend.gestsol.io:8000/email/send-email`;
+    const headers = new HttpHeaders({'Accept': '*/*'})
     const body = {
       to: `${data.email}`,
       subject: "Solicitud de Beneficio Live-Gps",
@@ -80,19 +80,19 @@ export class AffiliationService {
   `
   }
 
-    return this.http.post<any>(endpoint, body, /* { headers: headers} */)  
+    return this.http.post<any>(endpoint, body/* , { headers: headers} */)  
   }
 
   sendWhatsapp(data){
-    const endpoint = `http://message-backend.gestsol.io:3002/whatsapp/sendmessage`;
-
+    const endpoint = `https://message-backend.gestsol.io:3002/whatsapp/sendmessage`;
+    const headers = new HttpHeaders({'Accept': '*/*'})
     const body = {
       "code": data.prefix,
       "phone": data.phone_number,
       "message": `¡Hola ${data.first_name}! Hemos recibido tu solicitud para contratar Live GPS. Tras comprobar que eres beneficiario, enviaremos un correo electronico para que escojas el método de entrega de tu producto.`
   }
 
-    return this.http.post<any>(endpoint, body, /* { headers: headers} */)  
+    return this.http.post<any>(endpoint, body/* , { headers: headers} */)  
   }
 
 
