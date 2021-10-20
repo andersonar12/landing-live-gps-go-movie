@@ -39,7 +39,7 @@ export class AffiliationService {
   }
 
   sendMail(data){
-    const endpoint = `https://message-backend.gestsol.io:8000/email/send-email`;
+    const endpoint = `https://message-backend.gestsol.io/email/send-email`;
     const headers = new HttpHeaders({'Accept': '*/*'})
     const body = {
       to: `${data.email}`,
@@ -84,7 +84,7 @@ export class AffiliationService {
   }
 
   sendWhatsapp(data){
-    const endpoint = `https://message-backend.gestsol.io:3002/whatsapp/sendmessage`;
+    const endpoint = `https://message-backend.gestsol.io/whatsapp/sendmessage`;
     const headers = new HttpHeaders({'Accept': '*/*'})
     const body = {
       "code": data.prefix,
