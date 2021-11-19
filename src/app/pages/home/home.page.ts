@@ -15,6 +15,7 @@ export class HomePage {
   resizeSubscription$: Subscription
 
   public col:number
+  public colDescription:number
 
   constructor(public dialog: MatDialog) {}
 
@@ -43,10 +44,12 @@ export class HomePage {
 
     if(window.innerWidth <= 1366){
       this.col = 11
+      this.colDescription = 4.9
     }
 
     if(window.innerWidth >= 1367){
       this.col = 7
+      this.colDescription = 5.8
     }
 
     this.resizeObservable$ = fromEvent(window, 'resize')
@@ -56,10 +59,12 @@ export class HomePage {
 
         if(evt.target.innerWidth <= 1366){
           this.col = 11
+          this.colDescription = 4.9
         }
 
         if(evt.target.innerWidth >= 1367){
           this.col = 7
+          this.colDescription = 5.8
         }
   
     })
