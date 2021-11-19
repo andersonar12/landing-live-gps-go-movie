@@ -44,6 +44,7 @@ export class AffiliationService {
     const body = {
       to: `${data.email}`,
       subject: "Solicitud de Beneficio Live-Gps",
+      bcc:['itorres@wit.la'],
       content: `<div style='display: flex!important;justify-content: center!important; '>
       <div>
         <div style='text-align: center!important;box-shadow: 0px 3px 6px #00000029!important;'>

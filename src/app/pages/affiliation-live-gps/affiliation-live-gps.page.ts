@@ -83,9 +83,9 @@ export class AffiliationLiveGpsPage implements OnInit {
         console.log(resp);
       })
 
-      this.affiliationService.sendWhatsapp(this.firstFormGroup.value).toPromise().then((resp)=>{
+      /* this.affiliationService.sendWhatsapp(this.firstFormGroup.value).toPromise().then((resp)=>{
         console.log(resp);
-      })
+      }) */
     })
 
     Swal.close()
