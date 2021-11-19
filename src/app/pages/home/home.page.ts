@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription, Observable, fromEvent } from 'rxjs';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @Component({
@@ -9,10 +10,16 @@ import { ModalComponent } from 'src/app/components/modal/modal.component';
 })
 export class HomePage {
 
+  /* Para escuchar cuando cambia el width de la pantalla */
+  resizeObservable$: Observable<Event>
+  resizeSubscription$: Subscription
+
+  public col:number
+
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
-
+    this.onResize()
   }
 
   openDialog(source?): void {
@@ -30,5 +37,41 @@ export class HomePage {
       ...options,
       data: { source }
     });
+  }
+
+  onResize(){
+
+    if(window.innerWidth <= 1366){
+      this.col = 11
+    }
+
+    if(window.innerWidth >= 1367){
+      this.col = 7
+    }
+
+    this.resizeObservable$ = fromEvent(window, 'resize')
+    this.resizeSubscription$ = this.resizeObservable$.subscribe( (evt:any) => {
+
+      /* console.log(evt.target.innerWidth); */
+
+        if(evt.target.innerWidth <= 1366){
+          this.col = 11
+        }
+
+        if(evt.target.innerWidth >= 1367){
+          this.col = 7
+        }
+  
+    })
+
+ 
+
+
+  }
+
+  ngOnDestroy(){
+    if (this.resizeSubscription$) {
+      this.resizeSubscription$.unsubscribe()
+    }
   }
 }

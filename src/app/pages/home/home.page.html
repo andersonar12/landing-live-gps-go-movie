@@ -3,40 +3,40 @@
   <app-top-toolbar></app-top-toolbar>
   <div class="home py-4">
 
-    <ion-row class="ion-padding d-flex justify-content-center mt-2">
+    <ion-row class="d-flex justify-content-center mt-2">
       <ion-col [size]="12" [sizeMd]="12" [sizeLg]="10" [sizeXl]="8"  class="text-center" >
-        <h1>Conoce los nuevos beneficios que en Pullman tenemos para ti</h1>
+        <h1 class="mb-0">Conoce los nuevos beneficios que en Pullman tenemos para ti</h1>
       </ion-col>
     </ion-row>
 
     <ion-row class="d-flex justify-content-center"><!-- Descripciones -->
 
-      <ion-col [size]="12" [sizeMd]="12" [sizeLg]="11" [sizeXl]="7"  >
+      <ion-col [size]="12" [sizeMd]="12" [sizeLg]="11" [sizeXl]="col"  >
         <ion-row class="d-flex justify-content-between">
-          <ion-col class="" [sizeSm]="12" [sizeMd]="12" [sizeLg]="6" [sizeXl]="5.5">
+          <ion-col class="" [sizeSm]="12" [sizeMd]="12" [sizeLg]="6" [sizeXl]="5.8">
     
             <ion-row>
-              <ion-col size="12" class="poster-modal hvr-grow background-gradient text-center "><img class="px-3 py-3" src="assets/images/live-gps.png" width="260" (click)="openDialog('assets/images/servicio-live-gps.png')" ></ion-col>
+              <ion-col size="12" class="poster-modal hvr-grow background-gradient text-center "><img class="px-3 py-3" src="assets/images/live-gps.png" width="200" (click)="openDialog('assets/images/servicio-live-gps.png')" ></ion-col>
 
-              <ion-col size="12" class="description background-gradient mt-3 px-2 py-4 ">
+              <ion-col size="12" class="description background-gradient mt-3 px-1 py-2 ">
 
                 <ion-row class="d-flex justify-content-center">
-                  <ion-col size="1.1" ><img class="pt-2" src="assets/images/Icon ionic-ios-checkmark-1.svg" alt=""></ion-col>
+                  <ion-col size="0.8" ><img class="pt-1" src="assets/images/Icon ionic-ios-checkmark-1.svg" alt=""></ion-col>
                   <ion-col size="9"><p class="ps-1">Posicionamiento de tu vehículo en tiempo real.</p>  </ion-col>
                 </ion-row>
                 <ion-row class="d-flex justify-content-center">
-                  <ion-col size="1.1" ><img class="pt-2" src="assets/images/Icon ionic-ios-checkmark-1.svg" alt=""></ion-col>
+                  <ion-col size="0.8" ><img class="pt-1" src="assets/images/Icon ionic-ios-checkmark-1.svg" alt=""></ion-col>
                   <ion-col size="9"><p class="ps-1">Trazabilidad, odómetro, combustible, excesos de velocidad, etc.</p>  </ion-col>
                 </ion-row>
                 <ion-row class="d-flex justify-content-center">
-                  <ion-col size="1.1" ><img class="pt-2" src="assets/images/Icon ionic-ios-checkmark-1.svg" alt=""></ion-col>
+                  <ion-col size="0.8" ><img class="pt-1" src="assets/images/Icon ionic-ios-checkmark-1.svg" alt=""></ion-col>
                   <ion-col size="9"><p class="ps-1">Solución con plataforma web y App Mobile.</p>  </ion-col>
                 </ion-row>
 
                 <ion-row class="d-flex justify-content-center">
                   <ion-col size="9.5">
                     <span class="solo">Sólo por </span>
-                    <p style="font-size: 45px;" class="mb-0" ><strong>$10.490</strong><span>/mes</span></p>
+                    <p class="mb-0 font-price" ><strong>$10.490</strong><span>/mes</span></p>
                     <span style="line-height: 1;" class="text-gray">*El valor será automáticamente descontado por planilla.</span>
                   </ion-col>
                 </ion-row>
@@ -51,34 +51,34 @@
     
           </ion-col>
     
-          <ion-col class="" [sizeSm]="12"[sizeMd]="12"[sizeLg]="6" [sizeXl]="5.5"  >
+          <ion-col class="" [sizeSm]="12"[sizeMd]="12"[sizeLg]="6" [sizeXl]="5.8">
     
             <ion-row>
-              <ion-col size="12" class="poster-modal hvr-grow background-gradient text-center"><img class="px-3 py-3" src="assets/images/go-movie.png" width="260" ></ion-col>
+              <ion-col size="12" class="poster-modal hvr-grow background-gradient text-center"><img class="px-3 py-3" src="assets/images/go-movie.png" width="200" ></ion-col>
 
-              <ion-col size="12" class="description background-gradient mt-3 px-2 py-4 ">
+              <ion-col size="12" class="description background-gradient mt-3 px-1 py-2 ">
 
                 <ion-row class="d-flex justify-content-center">
-                  <ion-col size="1.1" ><img class="pt-2" src="assets/images/Icon ionic-ios-checkmark.svg" alt=""></ion-col>
+                  <ion-col size="0.8" ><img class="pt-1" src="assets/images/Icon ionic-ios-checkmark.svg" alt=""></ion-col>
                   <ion-col size="9"><p class="ps-1">Más de ___ películas y series a tu disposición.</p>  </ion-col>
                 </ion-row>
 
                 <ion-row class="d-flex justify-content-center">
-                  <ion-col size="1.1" ><img class="pt-2" src="assets/images/Icon ionic-ios-checkmark.svg" alt=""></ion-col>
+                  <ion-col size="0.8" ><img class="pt-1" src="assets/images/Icon ionic-ios-checkmark.svg" alt=""></ion-col>
                   <ion-col size="9"><p class="ps-1">Películas, series, documentales y mucho más.</p>  
                   <!-- <p class="ps-1"></p> -->
                   </ion-col>
                 </ion-row>
 
                 <ion-row class="d-flex justify-content-center">
-                  <ion-col size="1.1" ><img class="pt-2" src="assets/images/Icon ionic-ios-checkmark.svg" alt=""></ion-col>
-                  <ion-col size="9"><p class="ps-1">Diversión y entretenimiento a solo un click.</p>  </ion-col>
+                  <ion-col size="0.8" ><img class="pt-1" src="assets/images/Icon ionic-ios-checkmark.svg" alt=""></ion-col>
+                  <ion-col size="9"><p class="ps-1 mb-4">Diversión y entretenimiento a solo un click.</p>  </ion-col>
                 </ion-row>
 
                 <ion-row class="d-flex justify-content-center">
                   <ion-col size="9.5">
                     <span>Sólo por </span>
-                    <p style="font-size: 45px;" class="mb-0" ><strong>$1.490</strong><span>/mes</span></p>
+                    <p class="mb-0 font-price" ><strong>$1.490</strong><span>/mes</span></p>
                     <span style="line-height: 1;" class="text-gray">*El valor será automáticamente descontado por planilla.</span>
                   </ion-col>
                 </ion-row>
